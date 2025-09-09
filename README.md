@@ -174,4 +174,4 @@ POST /details
 
 Naufal Aditya Dirgandhavi\
 A0332886R / E1590364 \
-Master of Computing - Information Systems Specializations\
+Master of Computing - Information Systems Specializations
