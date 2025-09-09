@@ -95,7 +95,7 @@ app.get('/users', (req, res) => {
   for(let u in users){
     response.push({
       'id': users[u].id,
-      'amount': users[u].balance,
+      'balance': users[u].balance,
       'transactions': getTransactionsByUserId(users[u].id)
     })
   }
@@ -142,6 +142,10 @@ app.post('/settle', (req, res) => {
   console.log('POST /settle endpoint called');
 
   let transaction = transactions[req.body.id];
+  if(!transaction || transaction.settled){
+    res.send('Transaction not found or already settled');
+    return;
+  }
   let amount_per_user = {};
   for(let user in users){
     amount_per_user[user] = 0;
@@ -187,3 +191,5 @@ var transactions = {};
 app.listen(port, () => {
   console.log(`Split bill app listening on port ${port}`)
 })
+
+module.exports = app; // for testing
